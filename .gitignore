@@ -1,0 +1,8 @@
+# Ignore Frontend dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Ignore Backend build files
+backend/target/
+*.class
+.mvn/
