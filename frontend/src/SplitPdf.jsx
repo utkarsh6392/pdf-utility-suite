@@ -25,7 +25,7 @@ export default function SplitPdf() {
     formData.append('end', endPage);
 
     try {
-      const response = await axios.post('http://localhost:8080/api/pdf/split', formData, {
+      const response = await axios.post('https://ups-docs-backend.onrender.com', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         responseType: 'blob',
       });

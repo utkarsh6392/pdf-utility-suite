@@ -32,7 +32,7 @@ export default function MergePdf() {
     files.forEach(file => formData.append('files', file));
 
     try {
-      const response = await axios.post('http://localhost:8080/api/pdf/merge', formData, {
+      const response = await axios.post('https://ups-docs-backend.onrender.com', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         responseType: 'blob',
       });
