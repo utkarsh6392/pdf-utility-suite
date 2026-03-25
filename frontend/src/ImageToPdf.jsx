@@ -25,10 +25,9 @@ export default function ImageToPdf() {
     setMessage('');
     
     const formData = new FormData();
-    files.forEach(file => formData.append('files', file));
-
+    files.forEach((item) => formData.append('files', item));
     try {
-      const response = await axios.post('https://ups-docs-backend.onrender.com', formData, {
+      const response = await axios.post('https://ups-docs-backend.onrender.com/api/pdf/convert/images', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         responseType: 'blob',
       });
