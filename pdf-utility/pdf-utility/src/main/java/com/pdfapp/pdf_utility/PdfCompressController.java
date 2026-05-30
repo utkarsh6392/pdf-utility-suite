@@ -15,7 +15,7 @@ import java.io.IOException;
 @CrossOrigin(origins = "https://ups-docs-frontend.onrender.com") // Apne frontend URL ke hisab se check rakhna
 public class PdfCompressController {
 
-    @PostMapping("/compress")
+    @PostMapping("/optimize")
     public ResponseEntity<byte[]> compressPdf(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

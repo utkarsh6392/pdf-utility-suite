@@ -24,7 +24,7 @@ export default function CompressPdf() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('https://ups-docs-backend.onrender.com/api/pdf/compress', formData, {
+      const response = await axios.post('https://ups-docs-backend.onrender.com/api/pdf/optimize', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         responseType: 'blob',
       });
