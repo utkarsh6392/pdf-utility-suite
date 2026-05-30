@@ -9,6 +9,9 @@ import CompressPdf from './CompressPdf';
 import EditPdf from './EditPdf';
 import RotatePdf from './RotatePdf';
 
+// 1. Naya Extract Text component import kiya
+import ExtractText from './ExtractText';
+
 function App() {
   return (
     <Router>
@@ -30,6 +33,9 @@ function App() {
               <Link to="/split-pdf" className="hover:text-blue-600 transition">Split</Link>
               <Link to="/compress-pdf" className="hover:text-blue-600 transition">Compress</Link>
               <Link to="/edit-pdf" className="hover:text-blue-600 transition">Edit</Link>
+              
+              {/* 2. Navbar mein Extract Text ka link jod diya */}
+              <Link to="/extract-text" className="hover:text-blue-600 transition">Extract Text</Link>
             </div>
           </div>
         </nav>
@@ -44,6 +50,9 @@ function App() {
             <Route path="/compress-pdf" element={<CompressPdf />} />
             <Route path="/edit-pdf" element={<EditPdf />} />
             <Route path="/rotate-pdf" element={<RotatePdf />} />
+            
+            {/* 3. Naya Route active kar diya */}
+            <Route path="/extract-text" element={<ExtractText />} />
           </Routes>
         </main>
 
