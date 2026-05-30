@@ -147,16 +147,146 @@
 
 
 
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { 
+//   Layers, Scissors, Minimize2, Type, RotateCw, 
+//   FileText, Lock, FileJson, TableProperties 
+// } from 'lucide-react';
+
+// export default function WelcomePage() {
+//   return (
+//     <div className="space-y-12 pb-20 animate-fade-in">
+      
+//       {/* --- SECTION 1: Core Utilities --- */}
+//       <section>
+//         <div className="flex items-center gap-3 mb-6">
+//           <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
+//             <Layers size={20} />
+//           </div>
+//           <h2 className="text-xl font-bold text-slate-800 tracking-tight">Core Utilities</h2>
+//         </div>
+
+//         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+//           <ToolCard 
+//             to="/merge-pdf" 
+//             icon={<Layers className="text-blue-600" />} 
+//             title="Merge PDFs" 
+//             desc="Combine multiple individual PDF files into one massive, organized document."
+//             color="bg-blue-50"
+//           />
+//           <ToolCard 
+//             to="/split-pdf" 
+//             icon={<Scissors className="text-purple-600" />} 
+//             title="Extract Pages" 
+//             desc="Slice a large PDF and extract only the specific pages you actually need."
+//             color="bg-purple-50"
+//           />
+//           <ToolCard 
+//             to="/compress-pdf" 
+//             icon={<Minimize2 className="text-teal-600" />} 
+//             title="Optimize Size" 
+//             desc="Reduce file bloat and compress your PDFs without destroying visual quality."
+//             color="bg-teal-50"
+//           />
+//         </div>
+//       </section>
+
+//       {/* --- SECTION 2: Editing & Security --- */}
+//       <section>
+//         <div className="flex items-center gap-3 mb-6">
+//           <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600">
+//             <Type size={20} />
+//           </div>
+//           <h2 className="text-xl font-bold text-slate-800 tracking-tight">Editing & Security</h2>
+//         </div>
+
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+//           <ToolCard 
+//             to="/edit-pdf" 
+//             icon={<Type className="text-amber-600" />} 
+//             title="Annotate & Edit" 
+//             desc="Stamp watermarks and text onto pages."
+//             color="bg-amber-50"
+//           />
+//           <ToolCard 
+//             to="/rotate-pdf" 
+//             icon={<RotateCw className="text-indigo-600" />} 
+//             title="Rotate & Fix" 
+//             desc="Instantly correct upside-down scans."
+//             color="bg-indigo-50"
+//           />
+//           <ToolCard 
+//             to="/extract-text" 
+//             icon={<FileText className="text-emerald-600" />} 
+//             title="Extract Text" 
+//             desc="Pull raw text and data from any PDF."
+//             color="bg-emerald-50"
+//           />
+//           <ToolCard 
+//             to="/protect-pdf" 
+//             icon={<Lock className="text-red-600" />} 
+//             title="Protect PDF" 
+//             desc="Secure with 128-bit password encryption."
+//             color="bg-red-50"
+//           />
+//         </div>
+//       </section>
+
+//       {/* --- SECTION 3: Future Roadmap (Coming Soon) --- */}
+//       <section className="opacity-60">
+//         <h2 className="text-lg font-bold text-slate-400 mb-6 px-2">Coming Soon</h2>
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//           <div className="p-6 bg-white border border-slate-100 rounded-3xl flex items-center gap-5 relative overflow-hidden">
+//              <div className="bg-slate-100 p-4 rounded-2xl text-slate-400"><FileJson /></div>
+//              <div>
+//                 <h3 className="font-bold text-slate-500">PDF to Word</h3>
+//                 <p className="text-xs text-slate-400">Advanced OCR mapping in progress...</p>
+//              </div>
+//              <div className="absolute top-4 right-4 bg-slate-800 text-[10px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Enterprise</div>
+//           </div>
+//           <div className="p-6 bg-white border border-slate-100 rounded-3xl flex items-center gap-5 relative overflow-hidden">
+//              <div className="bg-slate-100 p-4 rounded-2xl text-slate-400"><TableProperties /></div>
+//              <div>
+//                 <h3 className="font-bold text-slate-500">Excel to PDF</h3>
+//                 <p className="text-xs text-slate-400">Formatting engine under development...</p>
+//              </div>
+//              <div className="absolute top-4 right-4 bg-slate-800 text-[10px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Enterprise</div>
+//           </div>
+//         </div>
+//       </section>
+
+//     </div>
+//   );
+// }
+
+// // Reuseable Card Component for consistent Hover Effects
+// function ToolCard({ to, icon, title, desc, color }) {
+//   return (
+//     <Link to={to} className="group p-6 bg-white border border-slate-200 rounded-[2rem] transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200 hover:-translate-y-2 flex flex-col items-start gap-4">
+//       <div className={`${color} p-4 rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+//         {React.cloneElement(icon, { size: 28 })}
+//       </div>
+//       <div className="text-left">
+//         <h3 className="text-lg font-black text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">{title}</h3>
+//         <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+//       </div>
+//     </Link>
+//   );
+// }
+
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Layers, Scissors, Minimize2, Type, RotateCw, 
-  FileText, Lock, FileJson, TableProperties 
+  FileText, Lock, FileJson, TableProperties, FileImage 
 } from 'lucide-react';
 
 export default function WelcomePage() {
   return (
-    <div className="space-y-12 pb-20 animate-fade-in">
+    <div className="space-y-12 pb-20 animate-fade-in max-w-6xl mx-auto">
       
       {/* --- SECTION 1: Core Utilities --- */}
       <section>
@@ -167,7 +297,7 @@ export default function WelcomePage() {
           <h2 className="text-xl font-bold text-slate-800 tracking-tight">Core Utilities</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <ToolCard 
             to="/merge-pdf" 
             icon={<Layers className="text-blue-600" />} 
@@ -189,69 +319,88 @@ export default function WelcomePage() {
             desc="Reduce file bloat and compress your PDFs without destroying visual quality."
             color="bg-teal-50"
           />
+          <ToolCard 
+            to="/image-to-pdf" 
+            icon={<FileImage className="text-sky-600" />} 
+            title="Images to PDF" 
+            desc="Convert your JPGs or PNGs into a structured PDF document."
+            color="bg-sky-50"
+          />
         </div>
       </section>
 
       {/* --- SECTION 2: Editing & Security --- */}
       <section>
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600">
-            <Type size={20} />
+          <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
+            <Lock size={20} />
           </div>
           <h2 className="text-xl font-bold text-slate-800 tracking-tight">Editing & Security</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <ToolCard 
             to="/edit-pdf" 
             icon={<Type className="text-amber-600" />} 
             title="Annotate & Edit" 
-            desc="Stamp watermarks and text onto pages."
+            desc="Stamp text and watermarks onto your specific PDF pages."
             color="bg-amber-50"
           />
           <ToolCard 
             to="/rotate-pdf" 
             icon={<RotateCw className="text-indigo-600" />} 
             title="Rotate & Fix" 
-            desc="Instantly correct upside-down scans."
+            desc="Instantly correct upside-down or misaligned scanned documents."
             color="bg-indigo-50"
-          />
-          <ToolCard 
-            to="/extract-text" 
-            icon={<FileText className="text-emerald-600" />} 
-            title="Extract Text" 
-            desc="Pull raw text and data from any PDF."
-            color="bg-emerald-50"
           />
           <ToolCard 
             to="/protect-pdf" 
             icon={<Lock className="text-red-600" />} 
             title="Protect PDF" 
-            desc="Secure with 128-bit password encryption."
+            desc="Secure confidential files with 128-bit password encryption."
             color="bg-red-50"
           />
         </div>
       </section>
 
-      {/* --- SECTION 3: Future Roadmap (Coming Soon) --- */}
-      <section className="opacity-60">
-        <h2 className="text-lg font-bold text-slate-400 mb-6 px-2">Coming Soon</h2>
+      {/* --- SECTION 3: Data Extraction --- */}
+      <section>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
+            <TableProperties size={20} />
+          </div>
+          <h2 className="text-xl font-bold text-slate-800 tracking-tight">Data Extraction & Analysis</h2>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="p-6 bg-white border border-slate-100 rounded-3xl flex items-center gap-5 relative overflow-hidden">
+          <ToolCard 
+            to="/extract-text" 
+            icon={<FileText className="text-emerald-600" />} 
+            title="Extract Text" 
+            desc="Pull raw text and copyable data straight from any PDF document."
+            color="bg-emerald-50"
+          />
+          <ToolCard 
+            to="/pdf-to-csv" 
+            icon={<TableProperties className="text-green-600" />} 
+            title="PDF to CSV (Excel)" 
+            desc="Parse and convert structured PDF tables into CSV data streams."
+            color="bg-green-50"
+          />
+        </div>
+      </section>
+
+      {/* --- SECTION 4: Future Roadmap (Coming Soon) --- */}
+      <section className="opacity-60 pt-4 border-t border-slate-200">
+        <h2 className="text-lg font-bold text-slate-400 mb-6 px-2">Coming Soon</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 bg-white border border-slate-100 rounded-[2rem] flex items-center gap-5 relative overflow-hidden">
              <div className="bg-slate-100 p-4 rounded-2xl text-slate-400"><FileJson /></div>
              <div>
                 <h3 className="font-bold text-slate-500">PDF to Word</h3>
-                <p className="text-xs text-slate-400">Advanced OCR mapping in progress...</p>
+                <p className="text-xs text-slate-400">Advanced OCR mapping</p>
              </div>
-             <div className="absolute top-4 right-4 bg-slate-800 text-[10px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Enterprise</div>
-          </div>
-          <div className="p-6 bg-white border border-slate-100 rounded-3xl flex items-center gap-5 relative overflow-hidden">
-             <div className="bg-slate-100 p-4 rounded-2xl text-slate-400"><TableProperties /></div>
-             <div>
-                <h3 className="font-bold text-slate-500">Excel to PDF</h3>
-                <p className="text-xs text-slate-400">Formatting engine under development...</p>
-             </div>
-             <div className="absolute top-4 right-4 bg-slate-800 text-[10px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Enterprise</div>
+             <div className="absolute top-4 right-4 bg-slate-800 text-[9px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Enterprise</div>
           </div>
         </div>
       </section>
@@ -263,7 +412,7 @@ export default function WelcomePage() {
 // Reuseable Card Component for consistent Hover Effects
 function ToolCard({ to, icon, title, desc, color }) {
   return (
-    <Link to={to} className="group p-6 bg-white border border-slate-200 rounded-[2rem] transition-all duration-300 hover:shadow-2xl hover:shadow-slate-200 hover:-translate-y-2 flex flex-col items-start gap-4">
+    <Link to={to} className="group p-6 bg-white border border-slate-200 rounded-[2rem] transition-all duration-300 hover:shadow-xl hover:shadow-slate-200 hover:-translate-y-1.5 flex flex-col items-start gap-4">
       <div className={`${color} p-4 rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
         {React.cloneElement(icon, { size: 28 })}
       </div>

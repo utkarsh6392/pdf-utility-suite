@@ -146,4 +146,36 @@ public class PdfService {
             return baos.toByteArray();
         }
     }
+    // PDF to CSV (Table Extractor) Logic
+    public byte[] extractTableToCsv(org.springframework.web.multipart.MultipartFile file) throws Exception {
+        try (org.apache.pdfbox.pdmodel.PDDocument document = org.apache.pdfbox.Loader.loadPDF(file.getBytes());
+             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+             java.io.PrintWriter writer = new java.io.PrintWriter(baos)) {
+            
+            org.apache.pdfbox.text.PDFTextStripper stripper = new org.apache.pdfbox.text.PDFTextStripper();
+            // Sort by position zaroori hai taaki columns aage-peeche na ho jayein
+            stripper.setSortByPosition(true); 
+            String text = stripper.getText(document);
+
+            // Text ko line by line padhna
+            String[] lines = text.split("\\r?\\n");
+            for (String line : lines) {
+                if (!line.trim().isEmpty()) {
+                    // Agar 2 ya usse zyada spaces hain, toh usko naya column (comma) maan lo
+                    String csvLine = line.trim().replaceAll("\\s{2,}", ",");
+                    
+                    // Columns ko safely CSV format mein wrap karna (escape quotes)
+                    String[] columns = csvLine.split(",");
+                    StringBuilder row = new StringBuilder();
+                    for (int i = 0; i < columns.length; i++) {
+                        row.append("\"").append(columns[i].replace("\"", "\"\"")).append("\"");
+                        if (i < columns.length - 1) row.append(",");
+                    }
+                    writer.println(row.toString());
+                }
+            }
+            writer.flush();
+            return baos.toByteArray();
+        }
+    }
 }

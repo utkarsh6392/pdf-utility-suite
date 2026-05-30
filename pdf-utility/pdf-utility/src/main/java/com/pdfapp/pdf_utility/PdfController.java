@@ -105,4 +105,14 @@ public class PdfController {
         headers.setContentDispositionFormData("attachment", filename);
         return new ResponseEntity<>(data, headers, HttpStatus.OK);
     }
+    @PostMapping("/extract-csv")
+    public ResponseEntity<byte[]> extractTableToCsv(@RequestParam("file") MultipartFile file) {
+        try { 
+            // Iska MediaType 'text/csv' hota hai, 'application/pdf' nahi
+            return createResponse(pdfService.extractTableToCsv(file), "UPS_DOCS_Data.csv", MediaType.parseMediaType("text/csv")); 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
 }
