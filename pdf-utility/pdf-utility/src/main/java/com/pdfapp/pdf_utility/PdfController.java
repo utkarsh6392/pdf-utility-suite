@@ -134,4 +134,23 @@ public class PdfController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+    @PostMapping("/redact")
+    public ResponseEntity<byte[]> redactPdf(@RequestParam("file") MultipartFile file, @RequestParam("keyword") String keyword) {
+        try { 
+            return createResponse(pdfService.redactPdf(file, keyword), "UPS_DOCS_Redacted.txt", MediaType.TEXT_PLAIN); 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
+
+    @PostMapping("/reorder")
+    public ResponseEntity<byte[]> reorderPdf(@RequestParam("file") MultipartFile file, @RequestParam("order") List<Integer> order) {
+        try { 
+            return createResponse(pdfService.reorderPdf(file, order), "UPS_DOCS_Reordered.pdf", MediaType.APPLICATION_PDF); 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
 }

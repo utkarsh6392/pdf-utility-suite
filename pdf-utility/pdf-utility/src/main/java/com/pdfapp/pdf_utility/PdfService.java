@@ -208,4 +208,39 @@ public class PdfService {
             return baos.toByteArray();
         }
     }
+    // FEATURE 2: Auto-Redaction (Text Masking) Logic
+    public byte[] redactPdf(org.springframework.web.multipart.MultipartFile file, String keyword) throws Exception {
+        try (org.apache.pdfbox.pdmodel.PDDocument document = org.apache.pdfbox.Loader.loadPDF(file.getBytes());
+             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream()) {
+            
+            // Hum plain text extract karke usme se sensitive keyword ko [REDACTED] se mask karenge
+            org.apache.pdfbox.text.PDFTextStripper stripper = new org.apache.pdfbox.text.PDFTextStripper();
+            String text = stripper.getText(document);
+            
+            // Case-insensitive masking using regex
+            String redactedText = text.replaceAll("(?i)" + java.util.regex.Pattern.quote(keyword), "████████");
+            
+            // Ise ek naye text document content stream ki tarah convert karke return karenge
+            baos.write(redactedText.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            return baos.toByteArray();
+        }
+    }
+
+    // FEATURE 3: Visual Page Reordering Logic
+    public byte[] reorderPdf(org.springframework.web.multipart.MultipartFile file, java.util.List<Integer> pageOrder) throws Exception {
+        try (org.apache.pdfbox.pdmodel.PDDocument sourceDoc = org.apache.pdfbox.Loader.loadPDF(file.getBytes());
+             org.apache.pdfbox.pdmodel.PDDocument targetDoc = new org.apache.pdfbox.pdmodel.PDDocument();
+             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream()) {
+            
+            // Frontend se jo order array [2, 0, 1] aayega, us sequence me pages arrange honge
+            for (int pageIndex : pageOrder) {
+                if (pageIndex >= 0 && pageIndex < sourceDoc.getNumberOfPages()) {
+                    targetDoc.addPage(sourceDoc.getPage(pageIndex));
+                }
+            }
+            
+            targetDoc.save(baos);
+            return baos.toByteArray();
+        }
+    }
 }
