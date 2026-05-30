@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pdf")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://ups-docs-frontend.onrender.com")
 public class PdfController {
 
     private final PdfService pdfService;
