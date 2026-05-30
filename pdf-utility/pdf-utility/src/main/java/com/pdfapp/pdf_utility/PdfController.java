@@ -79,6 +79,15 @@ public class PdfController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+    @PostMapping("/protect")
+    public ResponseEntity<byte[]> protectPdf(@RequestParam("file") MultipartFile file, @RequestParam("password") String password) {
+        try { 
+            return createResponse(pdfService.protectPdf(file, password), "UPS_DOCS_Locked.pdf", MediaType.APPLICATION_PDF); 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
 
     @PostMapping("/add-text")
     public ResponseEntity<byte[]> addTextToPdf(@RequestParam("file") MultipartFile file, @RequestParam("text") String text, @RequestParam("x") int x, @RequestParam("y") int y) {

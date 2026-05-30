@@ -128,4 +128,22 @@ public class PdfService {
             return baos.toByteArray();
         }
     }
+    // PDF Lock (Password Protect) Logic
+    public byte[] protectPdf(org.springframework.web.multipart.MultipartFile file, String password) throws Exception {
+        try (org.apache.pdfbox.pdmodel.PDDocument document = org.apache.pdfbox.Loader.loadPDF(file.getBytes());
+             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream()) {
+            
+            // Setting up 128-bit encryption
+            org.apache.pdfbox.pdmodel.encryption.AccessPermission ap = new org.apache.pdfbox.pdmodel.encryption.AccessPermission();
+            org.apache.pdfbox.pdmodel.encryption.StandardProtectionPolicy spp = 
+                new org.apache.pdfbox.pdmodel.encryption.StandardProtectionPolicy(password, password, ap);
+            
+            spp.setEncryptionKeyLength(128);
+            spp.setPermissions(ap);
+            document.protect(spp);
+            
+            document.save(baos);
+            return baos.toByteArray();
+        }
+    }
 }

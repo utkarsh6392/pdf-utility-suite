@@ -8,9 +8,10 @@ import SplitPdf from './SplitPdf';
 import CompressPdf from './CompressPdf';
 import EditPdf from './EditPdf';
 import RotatePdf from './RotatePdf';
-
-// 1. Naya Extract Text component import kiya
 import ExtractText from './ExtractText';
+
+// Naya Protect PDF component import kiya
+import ProtectPdf from './ProtectPdf';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         
         {/* UPS Custom Navbar */}
         <nav className="bg-white border-b border-slate-200 px-6 py-4 shadow-sm sticky top-0 z-50">
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center hover:opacity-80 transition">
               <div className="bg-blue-600 text-white px-2 py-1 rounded-l-md font-black text-xl tracking-tighter">UPS</div>
@@ -27,15 +28,19 @@ function App() {
             </Link>
             
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex gap-6 font-medium text-sm text-slate-600">
+            <div className="hidden md:flex gap-5 font-medium text-sm text-slate-600 flex-wrap">
               <Link to="/image-to-pdf" className="hover:text-blue-600 transition">Images to PDF</Link>
               <Link to="/merge-pdf" className="hover:text-blue-600 transition">Merge</Link>
               <Link to="/split-pdf" className="hover:text-blue-600 transition">Split</Link>
               <Link to="/compress-pdf" className="hover:text-blue-600 transition">Compress</Link>
               <Link to="/edit-pdf" className="hover:text-blue-600 transition">Edit</Link>
-              
-              {/* 2. Navbar mein Extract Text ka link jod diya */}
+              <Link to="/rotate-pdf" className="hover:text-blue-600 transition">Rotate</Link>
               <Link to="/extract-text" className="hover:text-blue-600 transition">Extract Text</Link>
+              
+              {/* Naya Protect PDF ka link */}
+              <Link to="/protect-pdf" className="hover:text-red-600 font-bold transition flex items-center gap-1">
+                Protect 🔒
+              </Link>
             </div>
           </div>
         </nav>
@@ -50,9 +55,10 @@ function App() {
             <Route path="/compress-pdf" element={<CompressPdf />} />
             <Route path="/edit-pdf" element={<EditPdf />} />
             <Route path="/rotate-pdf" element={<RotatePdf />} />
-            
-            {/* 3. Naya Route active kar diya */}
             <Route path="/extract-text" element={<ExtractText />} />
+            
+            {/* Naya Route active kar diya */}
+            <Route path="/protect-pdf" element={<ProtectPdf />} />
           </Routes>
         </main>
 
