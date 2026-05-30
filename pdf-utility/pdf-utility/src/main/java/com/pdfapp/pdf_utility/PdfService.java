@@ -195,4 +195,17 @@ public class PdfService {
             return baos.toByteArray();
         }
     }
+    // Unlock PDF (Remove Password) Logic
+    public byte[] unlockPdf(org.springframework.web.multipart.MultipartFile file, String password) throws Exception {
+        // Load PDF using the provided password
+        try (org.apache.pdfbox.pdmodel.PDDocument document = org.apache.pdfbox.Loader.loadPDF(file.getBytes(), password);
+             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream()) {
+            
+            // Remove all security/encryption from the document
+            document.setAllSecurityToBeRemoved(true);
+            document.save(baos);
+            
+            return baos.toByteArray();
+        }
+    }
 }

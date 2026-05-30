@@ -125,4 +125,13 @@ public class PdfController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+    @PostMapping("/unlock")
+    public ResponseEntity<byte[]> unlockPdf(@RequestParam("file") MultipartFile file, @RequestParam("password") String password) {
+        try { 
+            return createResponse(pdfService.unlockPdf(file, password), "UPS_DOCS_Unlocked.pdf", MediaType.APPLICATION_PDF); 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
 }
