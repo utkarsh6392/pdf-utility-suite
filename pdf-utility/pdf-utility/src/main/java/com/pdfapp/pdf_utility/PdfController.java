@@ -115,4 +115,14 @@ public class PdfController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
         }
     }
+    @PostMapping("/convert/word")
+    public ResponseEntity<byte[]> convertPdfToWord(@RequestParam("file") MultipartFile file) {
+        try { 
+            // Returning as legacy MS Word MIME type
+            return createResponse(pdfService.convertPdfToWord(file), "UPS_DOCS_Converted.doc", MediaType.parseMediaType("application/msword")); 
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); 
+        }
+    }
 }

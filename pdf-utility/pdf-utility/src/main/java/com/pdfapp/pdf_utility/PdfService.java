@@ -178,4 +178,21 @@ public class PdfService {
             return baos.toByteArray();
         }
     }
+    // PDF to Word (Smart HTML-DOC format wrapper)
+    public byte[] convertPdfToWord(org.springframework.web.multipart.MultipartFile file) throws Exception {
+        try (org.apache.pdfbox.pdmodel.PDDocument document = org.apache.pdfbox.Loader.loadPDF(file.getBytes());
+             java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream()) {
+            
+            org.apache.pdfbox.text.PDFTextStripper stripper = new org.apache.pdfbox.text.PDFTextStripper();
+            String text = stripper.getText(document);
+
+            // MS Word understands HTML structure easily when saved as .doc
+            String wordHtmlStructure = "<html><head><meta charset='utf-8'></head><body style='font-family: Arial, sans-serif; font-size: 12pt;'>" 
+                                     + text.replace("\n", "<br>") 
+                                     + "</body></html>";
+            
+            baos.write(wordHtmlStructure.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            return baos.toByteArray();
+        }
+    }
 }

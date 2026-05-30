@@ -276,12 +276,11 @@
 // }
 
 
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Layers, Scissors, Minimize2, Type, RotateCw, 
-  FileText, Lock, FileJson, TableProperties, FileImage 
+  FileText, Lock, TableProperties, FileImage, FileJson 
 } from 'lucide-react';
 
 export default function WelcomePage() {
@@ -363,16 +362,16 @@ export default function WelcomePage() {
         </div>
       </section>
 
-      {/* --- SECTION 3: Data Extraction --- */}
+      {/* --- SECTION 3: Data Extraction & Conversion --- */}
       <section>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
             <TableProperties size={20} />
           </div>
-          <h2 className="text-xl font-bold text-slate-800 tracking-tight">Data Extraction & Analysis</h2>
+          <h2 className="text-xl font-bold text-slate-800 tracking-tight">Data Extraction & Conversion</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <ToolCard 
             to="/extract-text" 
             icon={<FileText className="text-emerald-600" />} 
@@ -387,21 +386,13 @@ export default function WelcomePage() {
             desc="Parse and convert structured PDF tables into CSV data streams."
             color="bg-green-50"
           />
-        </div>
-      </section>
-
-      {/* --- SECTION 4: Future Roadmap (Coming Soon) --- */}
-      <section className="opacity-60 pt-4 border-t border-slate-200">
-        <h2 className="text-lg font-bold text-slate-400 mb-6 px-2">Coming Soon</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 bg-white border border-slate-100 rounded-[2rem] flex items-center gap-5 relative overflow-hidden">
-             <div className="bg-slate-100 p-4 rounded-2xl text-slate-400"><FileJson /></div>
-             <div>
-                <h3 className="font-bold text-slate-500">PDF to Word</h3>
-                <p className="text-xs text-slate-400">Advanced OCR mapping</p>
-             </div>
-             <div className="absolute top-4 right-4 bg-slate-800 text-[9px] text-white px-2 py-1 rounded-full font-bold uppercase tracking-widest">Enterprise</div>
-          </div>
+          <ToolCard 
+            to="/pdf-to-word" 
+            icon={<FileJson className="text-blue-700" />} 
+            title="PDF to Word" 
+            desc="Map PDF data into an editable Microsoft Word document (.doc)."
+            color="bg-blue-100"
+          />
         </div>
       </section>
 
